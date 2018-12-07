@@ -5,7 +5,6 @@ import bo.zhou.common.vo.MenuVo;
 import bo.zhou.common.vo.Result;
 import bo.zhou.common.vo.RoleVo;
 import bo.zhou.common.vo.UserVo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,8 +26,6 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserService userService;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
