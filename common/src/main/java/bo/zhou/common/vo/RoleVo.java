@@ -7,11 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-05-10
- * Time: 21:03
+ * @author zhoubo
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

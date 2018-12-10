@@ -1,6 +1,4 @@
 package bo.zhou.common.vo;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -8,11 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-05-10
- * Time: 21:00
+ * @author zhoubo
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -1,7 +1,7 @@
 package bo.zhou.gateway.fallback;
 
-import bo.zhou.gateway.model.ErrorCode;
-import bo.zhou.gateway.model.Msg;
+import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by Mr.Yangxiufeng on 2017/12/26.
- * Time:10:12
- * ProjectName:Mirco-Service-Skeleton
+ * @author zhoubo
  */
 @Component
 public class ServiceFallbackProvider implements FallbackProvider {
@@ -55,7 +53,7 @@ public class ServiceFallbackProvider implements FallbackProvider {
             @Override
             public InputStream getBody() throws IOException {
                 //响应体
-                Msg msg = new Msg();
+                Result msg = new Result();
                 msg.setCode(ErrorCode.MICRO_SERVICE_UNAVAILABLE);
                 msg.setMsg("微服务不可用，请稍后再试");
                 ObjectMapper objectMapper = new ObjectMapper();

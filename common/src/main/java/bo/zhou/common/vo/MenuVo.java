@@ -6,11 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-06-13
- * Time: 10:39
+ * @author zhoubo
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

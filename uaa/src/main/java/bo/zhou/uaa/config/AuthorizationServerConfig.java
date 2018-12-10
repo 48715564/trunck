@@ -1,4 +1,5 @@
 package bo.zhou.uaa.config;
+import bo.zhou.uaa.exception.Auth2ResponseExceptionTranslator;
 import bo.zhou.uaa.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -72,6 +73,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager);
         endpoints.tokenServices(defaultTokenServices());
+        //自定义异常
+        endpoints.exceptionTranslator(new Auth2ResponseExceptionTranslator());
     }
 
     /**

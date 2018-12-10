@@ -1,5 +1,6 @@
 package bo.zhou.uaa.config;
 
+import bo.zhou.uaa.endpoint.SecurityAuthenticationEntryPoint;
 import bo.zhou.uaa.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +48,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login").permitAll()
+        http.exceptionHandling().authenticationEntryPoint(new SecurityAuthenticationEntryPoint())
+                .and().authorizeRequests().antMatchers("/login","/**/v2/api-docs",
+                "/swagger-resources",
+                "/swagger-resources/**",
+                "/configuration/ui",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "swagger-resources/configuration/ui",
+                "/doc.html",
+                "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll();
     }

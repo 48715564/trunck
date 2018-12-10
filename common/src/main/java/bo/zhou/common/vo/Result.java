@@ -8,11 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-05-16
- * Time: 11:04
+ * @author zhoubo
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> implements Serializable {

@@ -1,5 +1,6 @@
 package bo.zhou.uaa;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -13,6 +14,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableEurekaClient
 @EnableHystrix
 @EnableRedisHttpSession
+@MapperScan("bo.zhou.uaa.mapper")
 @SpringBootApplication
 public class UaaApplication {
     @Bean

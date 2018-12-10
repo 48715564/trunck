@@ -1,13 +1,10 @@
-package bo.zhou.gateway.exception;
+package bo.zhou.uaa.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 
-/**
- * @author zhoubo
- */
 @Slf4j
 public class Auth2ResponseExceptionTranslator implements WebResponseExceptionTranslator {
 
