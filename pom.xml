@@ -30,6 +30,7 @@
         <swagger2.version>2.9.2</swagger2.version>
         <druid-starter.version>1.1.10</druid-starter.version>
         <mybatis-plus.boot.starter.version>3.0.6</mybatis-plus.boot.starter.version>
+        <spring-boot-admin.version>2.1.1</spring-boot-admin.version>
     </properties>
 
     <dependencies>

@@ -40,7 +40,14 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
             "/doc.html",
             "/webjars/**",
             "/csrf",
-            "/"
+            "/",
+            "/actuator/**",
+            "/druid/**",
+            "/admin/**",
+            "/favicon.ico",
+            "/turbine.stream",
+            "/proxy.stream",
+            "/hystrix/**"
     };
 
     @Override

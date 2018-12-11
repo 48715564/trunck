@@ -21,6 +21,7 @@ public class MessageException extends RuntimeException{
         this.exception = exception;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
