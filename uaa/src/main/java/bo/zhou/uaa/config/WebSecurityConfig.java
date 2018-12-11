@@ -48,16 +48,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.exceptionHandling().authenticationEntryPoint(new SecurityAuthenticationEntryPoint())
-                .and().authorizeRequests().antMatchers("/login").permitAll()
+        http
+                .authorizeRequests().antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/favor.ioc",
-                "/**/v2/api-docs",
+        web.ignoring().antMatchers("/favor.ioc"
+                , "/**/v2/api-docs",
                 "/swagger-resources",
                 "/swagger-resources/**",
                 "/configuration/ui",
@@ -68,6 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**",
                 "/favicon.ico",
                 "/druid/**",
-                "/actuator/**");
+                "/actuator/**"
+        );
     }
 }
