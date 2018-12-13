@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 /**
- * <p>必须要有，做验证</p>
- * Created by Mr.Yangxiufeng on 2017/12/29.
- * Time:10:43
- * ProjectName:Mirco-Service-Skeleton
+ * @author zhoubo
  */
 @RestController
+@RequestMapping("/api")
 public class UserController {
+    private static final String BEARER = "Bearer ";
     @Autowired
     TokenStore tokenStore;
     @Autowired
@@ -31,8 +30,8 @@ public class UserController {
 
     @RequestMapping("/getUserByToken")
     public Result getUserByToken(@RequestHeader("Authorization") String authorization) {
-        if(authorization.startsWith("Bearer ")){
-            authorization = authorization.substring("Bearer ".length());
+        if(authorization.startsWith(BEARER)){
+            authorization = authorization.substring(BEARER.length());
         }
         Object user = tokenStore.readAuthentication(authorization).getPrincipal();
         if(user instanceof User){

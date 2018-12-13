@@ -9,7 +9,24 @@ import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
  */
 @JsonSerialize(using = CustomOauthExceptionSerializer.class)
 public class CustomOauthException extends OAuth2Exception {
+    @Override
+    public int getHttpErrorCode() {
+        return httpErrorCode;
+    }
+
+    public void setHttpErrorCode(int httpErrorCode) {
+        this.httpErrorCode = httpErrorCode;
+    }
+
+    private int httpErrorCode;
+
     public CustomOauthException(String msg) {
         super(msg);
+        this.httpErrorCode = super.getHttpErrorCode();
+    }
+
+    public CustomOauthException(String msg,int httpErrorCode) {
+        super(msg);
+        this.httpErrorCode = httpErrorCode;
     }
 }

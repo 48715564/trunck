@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by Mr.Yangxiufeng on 2018/1/2.
- * Time:9:22
- * ProjectName:Mirco-Service-Skeleton
+ * @author zhoubo
  */
 @FrameworkEndpoint
 public class RevokeTokenEndpoint {

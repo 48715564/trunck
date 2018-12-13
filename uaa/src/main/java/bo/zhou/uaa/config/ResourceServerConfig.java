@@ -18,10 +18,7 @@ import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
- * <p>参看：https://github.com/spring-guides/tut-spring-security-and-angular-js/blob/master/oauth2-vanilla/README.adoc</p>
- * Created by Mr.Yangxiufeng on 2017/12/29.
- * Time:10:46
- * ProjectName:Mirco-Service-Skeleton
+ * @author zhoubo
  */
 @Configuration
 @EnableResourceServer
@@ -32,7 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .cors().and().exceptionHandling()
                 // 定义的不存在access_token时候响应
                 .authenticationEntryPoint(new SecurityAuthenticationEntryPoint())
-                .and().requestMatchers().antMatchers("/user", "/getUserByToken")
+                .and().requestMatchers().antMatchers("/api/**")
                 .and().authorizeRequests().anyRequest().authenticated();
     }
 

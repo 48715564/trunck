@@ -21,7 +21,7 @@ public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthExc
     @Override
     public void serialize(CustomOauthException value, JsonGenerator gen, SerializerProvider provider) throws IOException {
         gen.writeStartObject();
-        gen.writeStringField("code", String.valueOf(ErrorCode.UNAUTHORIZED));
+        gen.writeStringField("code", String.valueOf(value.getHttpErrorCode()));
         gen.writeStringField("message", value.getMessage());
         gen.writeEndObject();
     }

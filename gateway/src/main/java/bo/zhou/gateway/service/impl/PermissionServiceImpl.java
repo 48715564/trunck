@@ -12,11 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * Description:
- * User: Mr.Yangxiufeng
- * Date: 2018-05-14
- * Time: 16:01
+ * @author zhoubo
  */
 @Service("permissionService")
 @Slf4j
@@ -28,8 +24,7 @@ public class PermissionServiceImpl implements PermissionService {
      * ？匹配一个字符
      * *匹配0个或多个字符
      * **匹配0个或多个目录
-     * 用例如下
-     * <p>https://www.cnblogs.com/zhangxiaoguang/p/5855113.html</p>
+     *
      */
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
