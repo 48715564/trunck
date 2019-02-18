@@ -1,9 +1,11 @@
 package bo.zhou.uaa.utils.codeGenerator;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang.StringUtils;
@@ -43,7 +45,11 @@ public class CodeGenerator {
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath +"//uaa"+ "/src/main/java");
         gc.setAuthor("zhoubo");
-        gc.setOpen(false);
+        gc.setOpen(false); gc.setFileOverride(true);
+        gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
+        gc.setEnableCache(false);// XML 二级缓存
+        gc.setBaseResultMap(true);// XML ResultMap
+        gc.setBaseColumnList(true);// XML columList
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -69,15 +75,15 @@ public class CodeGenerator {
             }
         };
         List<FileOutConfig> focList = new ArrayList<>();
-//        focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
-//            @Override
-//            public String outputFile(TableInfo tableInfo) {
-//                // 自定义输入文件名称
-//                return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
-//                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-//            }
-//        });
-//        cfg.setFileOutConfigList(focList);
+        focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输入文件名称
+                return projectPath +"//uaa" + "/src/main/resources/mapper/" + pc.getModuleName()
+                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+            }
+        });
+        cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
         mpg.setTemplate(new TemplateConfig().setXml(null));
 
