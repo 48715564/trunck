@@ -4,11 +4,8 @@ import bo.zhou.common.vo.ErrorCode;
 import bo.zhou.common.vo.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,16 +13,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @Auther: lixiupeng
- * @Date: 2018/11/21 15:54
- * @Description: 自定义权限不足处理
+ * @author : zhoubo
+ * @description: 自定义权限不足处理
  */
 @Service
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     ObjectMapper objectMapper = new ObjectMapper();
-
-    private String errorPage;
  
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {

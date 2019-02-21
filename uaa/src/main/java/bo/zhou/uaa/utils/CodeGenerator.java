@@ -34,9 +34,6 @@ public class CodeGenerator extends AutoGenerator{
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         this.setStrategy(strategy);
-    }
-
-    public List<TableInfo> getTableInfo(){
         // 初始化配置
         if (null == config) {
             config = new ConfigBuilder(this.getPackageInfo(), this.getDataSource(), this.getStrategy(), this.getTemplate(), this.getGlobalConfig());
@@ -45,6 +42,9 @@ public class CodeGenerator extends AutoGenerator{
             }
         }
         this.pretreatmentConfigBuilder(config);
+    }
+
+    public List<TableInfo> getTableInfo(){
        return this.getAllTableInfoList(this.config);
     }
     /**

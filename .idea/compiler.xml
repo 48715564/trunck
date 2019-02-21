@@ -10,13 +10,10 @@
         <module name="common" />
         <module name="eureka" />
         <module name="gateway" />
+        <module name="service" />
         <module name="uaa" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="auth" target="1.8" />
-      <module name="helloworldService" target="1.8" />
-      <module name="userServcie" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
