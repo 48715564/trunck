@@ -32,7 +32,7 @@ public class AdminExceptionHandler {
      * @description: 自定义异常捕获处理
      */
     @ResponseBody
-    @ExceptionHandler(value = MessageException.class)//MessageException是自定义的一个异常
+    @ExceptionHandler(value = MessageException.class)
     public Result messageCenterExceptionHandler(MessageException ex) {
         log.error("捕获到MessageCenterException异常", ex.getException());
         //异常日志入库
@@ -44,7 +44,7 @@ public class AdminExceptionHandler {
      * @description: 表单验证错误
      */
     @ResponseBody
-    @ExceptionHandler(value = ConstraintViolationException.class)//MessageException是自定义的一个异常
+    @ExceptionHandler(value = ConstraintViolationException.class)
     public Result messageCenterExceptionHandler(MethodArgumentNotValidException ex) {
         log.error("捕获到MessageCenterException异常", ex.getStackTrace());
         //异常日志入库

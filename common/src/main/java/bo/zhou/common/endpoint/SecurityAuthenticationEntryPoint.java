@@ -1,4 +1,4 @@
-package bo.zhou.uaa.endpoint;
+package bo.zhou.common.endpoint;
 
 import bo.zhou.common.vo.ErrorCode;
 import bo.zhou.common.vo.Result;
@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author zhoubo

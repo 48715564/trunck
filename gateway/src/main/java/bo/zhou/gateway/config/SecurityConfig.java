@@ -1,5 +1,6 @@
 package bo.zhou.gateway.config;
 
+import bo.zhou.common.endpoint.SecurityAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +49,8 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+        http.csrf().disable().exceptionHandling()// 定义的不存在access_token时候响应
+                .authenticationEntryPoint(new SecurityAuthenticationEntryPoint()).accessDeniedHandler(accessDeniedHandler)
                 .and().authorizeRequests().antMatchers("/v2/api-docs", "/uaa/oauth/**").permitAll();
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http

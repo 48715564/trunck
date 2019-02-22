@@ -10,6 +10,7 @@
         <module name="common" />
         <module name="eureka" />
         <module name="gateway" />
+        <module name="service" />
         <module name="uaa" />
       </profile>
     </annotationProcessing>
