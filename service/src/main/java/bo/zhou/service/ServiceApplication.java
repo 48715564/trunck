@@ -1,4 +1,4 @@
-package com.example.service;
+package bo.zhou.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableEurekaClient
 @EnableHystrix
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "bo.zhou")
 public class ServiceApplication {
 
     public static void main(String[] args) {

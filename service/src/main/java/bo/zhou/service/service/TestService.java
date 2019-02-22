@@ -1,4 +1,4 @@
-package com.example.service.service;
+package bo.zhou.service.service;
 
 import org.springframework.stereotype.Service;
 

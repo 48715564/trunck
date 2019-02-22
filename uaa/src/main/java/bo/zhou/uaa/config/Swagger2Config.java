@@ -30,11 +30,11 @@ import java.util.List;
 @EnableSwagger2
 @Configuration
 public class Swagger2Config {
-    @Value("${swagger2.config.oauth2.tokenUrl}")
+    @Value("${oauth2.tokenUrl}")
     private String tokenUrl;
-    @Value("${swagger2.config.oauth2.clientId}")
+    @Value("${oauth2.clientId}")
     private String clientId;
-    @Value("${swagger2.config.oauth2.secret}")
+    @Value("${oauth2.secret}")
     private String secret;
 
     private OAuth securitySchema() {

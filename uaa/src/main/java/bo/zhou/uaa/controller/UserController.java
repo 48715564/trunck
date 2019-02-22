@@ -23,6 +23,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     @RequestMapping("/user")
     public Principal user(Principal user) {
         return user;

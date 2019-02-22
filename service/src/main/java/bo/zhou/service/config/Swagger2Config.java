@@ -1,4 +1,4 @@
-package com.example.service.config;
+package bo.zhou.service.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -25,11 +25,11 @@ import java.util.List;
 @EnableSwagger2
 @Configuration
 public class Swagger2Config {
-    @Value("${swagger2.config.oauth2.tokenUrl}")
+    @Value("${oauth2.tokenUrl}")
     private String tokenUrl;
-    @Value("${swagger2.config.oauth2.clientId}")
+    @Value("${oauth2.clientId}")
     private String clientId;
-    @Value("${swagger2.config.oauth2.secret}")
+    @Value("${oauth2.secret}")
     private String secret;
 
     private OAuth securitySchema() {
@@ -67,7 +67,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.service.controller"))
+                .apis(RequestHandlerSelectors.basePackage("bo.zhou.service.controller"))
                 .paths(PathSelectors.ant("/api/**"))
 //                .paths(PathSelectors.any())
                 .build().securityContexts(Collections.singletonList(securityContext()))

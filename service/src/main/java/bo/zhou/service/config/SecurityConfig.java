@@ -1,4 +1,4 @@
-package com.example.service.config;
+package bo.zhou.service.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
