@@ -1,6 +1,6 @@
 package bo.zhou.uaa.mapper;
 
-import bo.zhou.uaa.entity.RcRole;
+import bo.zhou.common.entity.RcRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
 

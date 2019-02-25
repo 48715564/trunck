@@ -49,9 +49,9 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().exceptionHandling()// 定义的不存在access_token时候响应
+        http.exceptionHandling()// 定义的不存在access_token时候响应
                 .authenticationEntryPoint(new SecurityAuthenticationEntryPoint()).accessDeniedHandler(accessDeniedHandler)
-                .and().authorizeRequests().antMatchers("/v2/api-docs", "/uaa/oauth/**").permitAll();
+                .and().authorizeRequests().antMatchers("/v2/api-docs", "/uaa/oauth/**", "/uaa/api/user", "/uaa/api/getUserInfo", "/uaa/api/getUserMenus").permitAll();
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();

@@ -20,11 +20,10 @@ public class PermissionServiceImpl implements PermissionService {
 
     /**
      * 可以做URLs匹配，规则如下
-     *
+     * <p>
      * ？匹配一个字符
      * *匹配0个或多个字符
      * **匹配0个或多个目录
-     *
      */
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -33,23 +32,22 @@ public class PermissionServiceImpl implements PermissionService {
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
         String requestUrl = request.getRequestURI();
-        log.info("requestUrl:{}",requestUrl);
+        log.info("requestUrl:{}", requestUrl);
         List<SimpleGrantedAuthority> grantedAuthorityList = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
         boolean hasPermission = false;
 
-        if (principal != null){
-            if (CollectionUtils.isEmpty(grantedAuthorityList)){
+        if (principal != null) {
+            if (CollectionUtils.isEmpty(grantedAuthorityList)) {
                 return hasPermission;
             }
-            for (SimpleGrantedAuthority authority:grantedAuthorityList
-                 ) {
-                if (antPathMatcher.match(authority.getAuthority(),requestUrl)){
+            for (SimpleGrantedAuthority authority : grantedAuthorityList) {
+                if (antPathMatcher.match(authority.getAuthority(), requestUrl)) {
                     hasPermission = true;
                     break;
                 }
             }
         }
 
-        return true;
+        return hasPermission;
     }
 }

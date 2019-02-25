@@ -1,6 +1,10 @@
 package bo.zhou.uaa.service.impl;
 
-import bo.zhou.common.vo.*;
+import bo.zhou.common.entity.RcMenu;
+import bo.zhou.common.entity.RcRole;
+import bo.zhou.common.entity.RcUser;
+import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.Result;
 import bo.zhou.uaa.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Result<UserVo> userResult = userService.findByUsername(username);
+        Result<RcUser> userResult = userService.findByUsername(username);
         if (userResult.getCode() == ErrorCode.BAD_REQUEST) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
@@ -39,26 +43,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean credentialsNonExpired = true;
         // 锁定性 :true:未锁定 false:已锁定
         boolean accountNonLocked = true;
-        UserVo userVo = new UserVo();
-        BeanUtils.copyProperties(userResult.getData(), userVo);
-        Result<List<RoleVo>> roleResult = userService.getRoleByUserId(userVo.getId());
-        List<RoleVo> roleVoList = roleResult.getData();
-        for (RoleVo role : roleVoList) {
+        Result<List<RcRole>> roleResult = userService.getRoleByUserId(userResult.getData().getId());
+        List<RcRole> roleVoList = roleResult.getData();
+        for (RcRole role : roleVoList) {
             //角色必须是ROLE_开头，可以在数据库中设置
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role.getValue());
             grantedAuthorities.add(grantedAuthority);
             //获取权限
-            Result<List<MenuVo>> perResult = userService.getRolePermission(role.getId());
+            Result<List<RcMenu>> perResult = userService.getRolePermission(role.getId());
             if (perResult.getCode() != 100) {
-                List<MenuVo> permissionList = perResult.getData();
-                for (MenuVo menu : permissionList
-                ) {
+                List<RcMenu> permissionList = perResult.getData();
+                for (RcMenu menu : permissionList) {
                     GrantedAuthority authority = new SimpleGrantedAuthority(menu.getCode());
                     grantedAuthorities.add(authority);
                 }
             }
         }
-        User user = new User(userVo.getUsername(), userVo.getPassword(),
+        User user = new User(userResult.getData().getUsername(), userResult.getData().getPassword(),
                 enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
         return user;
     }

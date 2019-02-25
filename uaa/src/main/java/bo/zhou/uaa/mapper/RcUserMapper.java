@@ -1,6 +1,6 @@
 package bo.zhou.uaa.mapper;
 
-import bo.zhou.uaa.entity.RcUser;
+import bo.zhou.common.entity.RcUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
