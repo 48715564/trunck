@@ -5,8 +5,6 @@ import bo.zhou.common.entity.RcUser;
 import bo.zhou.common.vo.Result;
 import bo.zhou.uaa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
