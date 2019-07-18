@@ -1,6 +1,6 @@
 package bo.zhou.gateway.handler;
 
-import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.ResponseCode;
 import bo.zhou.common.vo.Result;
 import bo.zhou.gateway.exception.MessageException;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class AdminExceptionHandler {
     public Result javaExceptionHandler(Exception ex) {
         log.error("捕获到Exception异常", ex);
         //异常日志入库
-        return Result.failure(ErrorCode.BAD_REQUEST, ex.getMessage());
+        return Result.failure(ResponseCode.BAD_REQUEST, ex.getMessage());
     }
 
     /**
@@ -36,7 +36,7 @@ public class AdminExceptionHandler {
     public Result messageCenterExceptionHandler(MessageException ex) {
         log.error("捕获到MessageCenterException异常", ex.getException());
         //异常日志入库
-        return Result.failure(ErrorCode.BAD_REQUEST, ex.getMessage());
+        return Result.failure(ResponseCode.BAD_REQUEST, ex.getMessage());
     }
 
     /**
@@ -48,6 +48,6 @@ public class AdminExceptionHandler {
     public Result messageCenterExceptionHandler(MethodArgumentNotValidException ex) {
         log.error("捕获到MessageCenterException异常", ex.getStackTrace());
         //异常日志入库
-        return Result.failure(ErrorCode.BAD_REQUEST, ex.getMessage());
+        return Result.failure(ResponseCode.BAD_REQUEST, ex.getMessage());
     }
 }

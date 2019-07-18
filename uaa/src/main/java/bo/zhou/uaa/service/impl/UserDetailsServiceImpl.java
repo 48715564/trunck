@@ -3,10 +3,9 @@ package bo.zhou.uaa.service.impl;
 import bo.zhou.common.entity.RcMenu;
 import bo.zhou.common.entity.RcRole;
 import bo.zhou.common.entity.RcUser;
-import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.ResponseCode;
 import bo.zhou.common.vo.Result;
 import bo.zhou.uaa.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Result<RcUser> userResult = userService.findByUsername(username);
-        if (userResult.getCode() == ErrorCode.BAD_REQUEST) {
+        if (userResult.getCode() == ResponseCode.BAD_REQUEST) {
             throw new UsernameNotFoundException("用户:" + username + ",不存在!");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

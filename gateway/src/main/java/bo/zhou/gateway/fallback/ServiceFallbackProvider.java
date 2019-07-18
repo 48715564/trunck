@@ -1,6 +1,6 @@
 package bo.zhou.gateway.fallback;
 
-import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.ResponseCode;
 import bo.zhou.common.vo.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
@@ -54,7 +54,7 @@ public class ServiceFallbackProvider implements FallbackProvider {
             public InputStream getBody() throws IOException {
                 //响应体
                 Result msg = new Result();
-                msg.setCode(ErrorCode.MICRO_SERVICE_UNAVAILABLE);
+                msg.setCode(ResponseCode.MICRO_SERVICE_UNAVAILABLE);
                 msg.setMsg("微服务不可用，请稍后再试");
                 ObjectMapper objectMapper = new ObjectMapper();
                 String content = objectMapper.writeValueAsString(msg);

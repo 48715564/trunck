@@ -40,9 +40,9 @@ public class UserServiceImpl implements UserService {
         RcUser rcUser = rcUserMapper.selectOne(queryWrapper);
         Result<RcUser> result = new Result();
         if(rcUser==null){
-            result.setCode(ErrorCode.BAD_REQUEST);
+            result.setCode(ResponseCode.BAD_REQUEST);
         }else {
-            result.setCode(ErrorCode.OK);
+            result.setCode(ResponseCode.OK);
             result.setData(rcUser);
         }
         return result;
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public Result<List<RcRole>> getRoleByUserId(Integer userId) {
         List<RcRole> rcRoles = rcRoleMapper.getRoleByUserId(userId);
         Result<List<RcRole>> result = new Result();
-        result.setCode(ErrorCode.OK);
+        result.setCode(ResponseCode.OK);
         result.setData(rcRoles);
         return result;
     }
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         Result<List<RcMenu>> result = new Result();
-        result.setCode(ErrorCode.OK);
+        result.setCode(ResponseCode.OK);
         result.setData(rcMenuList);
         return result;
     }
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
     public Result<List<RcMenu>> getRolePermission(Integer roleId) {
         List<RcMenu> rcMenus = rcMenuMapper.getPermissionsByRoleId(roleId);
         Result<List<RcMenu>> result = new Result();
-        result.setCode(ErrorCode.OK);
+        result.setCode(ResponseCode.OK);
         result.setData(rcMenus);
         return result;
     }

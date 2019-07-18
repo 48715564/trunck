@@ -1,6 +1,6 @@
 package bo.zhou.gateway.handler;
 
-import bo.zhou.common.vo.ErrorCode;
+import bo.zhou.common.vo.ResponseCode;
 import bo.zhou.common.vo.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         response.setContentType("application/json;charset=UTF-8");
         Result result = new Result();
         result.setMsg(accessDeniedException.getMessage());
-        result.setCode(ErrorCode.FORBIDDEN);
+        result.setCode(ResponseCode.FORBIDDEN);
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(result));
     }

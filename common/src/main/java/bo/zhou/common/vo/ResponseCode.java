@@ -3,7 +3,7 @@ package bo.zhou.common.vo;
 /**
  * @author zhoubo
  */
-public class ErrorCode {
+public class ResponseCode {
 
     public static final int OK=200;
 
