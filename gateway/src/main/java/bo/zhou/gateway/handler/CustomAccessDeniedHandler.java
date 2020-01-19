@@ -28,8 +28,8 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
         Result result = new Result();
-        result.setMsg(accessDeniedException.getMessage());
-        result.setCode(ResponseCode.FORBIDDEN);
+        result.setMsg("权限不足");
+        result.setCode(ResponseCode.BAD_REQUEST);
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(result));
     }

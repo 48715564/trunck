@@ -1,8 +1,8 @@
-package bo.zhou.gateway.handler;
+package bo.zhou.common.handler;
 
+import bo.zhou.common.exception.MessageException;
 import bo.zhou.common.vo.ResponseCode;
 import bo.zhou.common.vo.Result;
-import bo.zhou.gateway.exception.MessageException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

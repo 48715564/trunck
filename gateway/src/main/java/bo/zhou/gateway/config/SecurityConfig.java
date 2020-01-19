@@ -1,6 +1,7 @@
 package bo.zhou.gateway.config;
 
 import bo.zhou.common.endpoint.SecurityAuthenticationEntryPoint;
+import bo.zhou.common.exception.Auth2ResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,9 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
@@ -44,14 +47,15 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
             "/favicon.ico",
             "/turbine.stream",
             "/proxy.stream",
-            "/hystrix/**"
+            "/hystrix/**",
+            "/v2/api-docs",
+            "/uaa/oauth/**"
     };
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.exceptionHandling()// 定义的不存在access_token时候响应
-                .authenticationEntryPoint(new SecurityAuthenticationEntryPoint()).accessDeniedHandler(accessDeniedHandler)
-                .and().authorizeRequests().antMatchers("/v2/api-docs", "/uaa/oauth/**", "/uaa/api/user", "/uaa/api/getUserInfo", "/uaa/api/getUserMenus").permitAll();
+                .authenticationEntryPoint(new SecurityAuthenticationEntryPoint()).accessDeniedHandler(accessDeniedHandler);
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();
@@ -65,6 +69,10 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
+        // 定义异常转换类生效
+        AuthenticationEntryPoint authenticationEntryPoint = new OAuth2AuthenticationEntryPoint();
+        ((OAuth2AuthenticationEntryPoint) authenticationEntryPoint).setExceptionTranslator(new Auth2ResponseExceptionTranslator());
+        resources.authenticationEntryPoint(authenticationEntryPoint);
         resources.expressionHandler(expressionHandler);
     }
 

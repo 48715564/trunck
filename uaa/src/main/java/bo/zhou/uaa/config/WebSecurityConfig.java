@@ -42,14 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests().antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll();
-    }
-
-    @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/favor.ioc"
                 , "/**/v2/api-docs",

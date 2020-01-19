@@ -1,11 +1,12 @@
-package bo.zhou.uaa.json.serializer;
+package bo.zhou.common.serializer;
 
-import bo.zhou.uaa.exception.CustomOauthException;
+import bo.zhou.common.exception.CustomOauthException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
+
 /**
  * @author zhoubo
  */

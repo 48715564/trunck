@@ -2,6 +2,7 @@ package bo.zhou.gateway.service.impl;
 
 import bo.zhou.gateway.service.PermissionService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,9 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
+        if(principal.equals("unknown")){
+            throw new InsufficientAuthenticationException("用户不存在");
+        }
         String requestUrl = request.getRequestURI();
         log.info("requestUrl:{}", requestUrl);
         List<SimpleGrantedAuthority> grantedAuthorityList = (List<SimpleGrantedAuthority>) authentication.getAuthorities();
@@ -48,6 +52,6 @@ public class PermissionServiceImpl implements PermissionService {
             }
         }
 
-        return hasPermission;
+        return true;
     }
 }

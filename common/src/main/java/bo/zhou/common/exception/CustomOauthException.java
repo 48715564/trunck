@@ -1,6 +1,5 @@
-package bo.zhou.uaa.exception;
-
-import bo.zhou.uaa.json.serializer.CustomOauthExceptionSerializer;
+package bo.zhou.common.exception;
+import bo.zhou.common.serializer.CustomOauthExceptionSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 

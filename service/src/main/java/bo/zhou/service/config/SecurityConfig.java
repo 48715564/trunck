@@ -15,7 +15,7 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()// 跨域支持
-                .cors().and().exceptionHandling()
+                .cors()
                 .and().requestMatchers().antMatchers("/api/**")
                 .and().authorizeRequests().anyRequest().authenticated();
     }

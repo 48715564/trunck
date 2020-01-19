@@ -1,7 +1,7 @@
 package bo.zhou.uaa.config;
 
 import bo.zhou.common.endpoint.SecurityAuthenticationEntryPoint;
-import bo.zhou.uaa.exception.Auth2ResponseExceptionTranslator;
+import bo.zhou.common.exception.Auth2ResponseExceptionTranslator;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -22,12 +22,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .cors().and().exceptionHandling()
                 // 定义的不存在access_token时候响应
                 .authenticationEntryPoint(new SecurityAuthenticationEntryPoint())
-                .and().requestMatchers().antMatchers("/api/**")
                 .and().authorizeRequests().anyRequest().authenticated();
     }
 
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+    public void configure(ResourceServerSecurityConfigurer resources) {
         // 定义异常转换类生效
         AuthenticationEntryPoint authenticationEntryPoint = new OAuth2AuthenticationEntryPoint();
         ((OAuth2AuthenticationEntryPoint) authenticationEntryPoint).setExceptionTranslator(new Auth2ResponseExceptionTranslator());

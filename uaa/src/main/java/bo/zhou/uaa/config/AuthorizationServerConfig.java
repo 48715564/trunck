@@ -1,5 +1,6 @@
 package bo.zhou.uaa.config;
-import bo.zhou.uaa.exception.Auth2ResponseExceptionTranslator;
+
+import bo.zhou.common.exception.Auth2ResponseExceptionTranslator;
 import bo.zhou.uaa.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,11 +54,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new RedisTokenStore(redisConnectionFactory);
     }
 
-    //token存储数据库
-//    @Bean
-//    public JdbcTokenStore jdbcTokenStore(){
-//        return new JdbcTokenStore(dataSource);
-//    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
