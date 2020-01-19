@@ -33,7 +33,7 @@ public class PermissionServiceImpl implements PermissionService {
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
         if(principal.equals("unknown")){
-            throw new InsufficientAuthenticationException("用户不存在");
+            throw new InsufficientAuthenticationException("token过期或无效");
         }
         String requestUrl = request.getRequestURI();
         log.info("requestUrl:{}", requestUrl);
@@ -52,6 +52,6 @@ public class PermissionServiceImpl implements PermissionService {
             }
         }
 
-        return true;
+        return hasPermission;
     }
 }

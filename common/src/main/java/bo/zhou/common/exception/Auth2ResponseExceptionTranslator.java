@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
 public class Auth2ResponseExceptionTranslator implements WebResponseExceptionTranslator {
     private final String LOGIN_ERROR_INFO = "Bad credentials";
     private final String IMPLICIT_GRANT_TYPE_NOT_SUPPORTED = "Implicit grant type not supported from token endpoint";
+    private final String INVALID_ACCESS_TOKEN = "Invalid access token";
 
     @Override
     public ResponseEntity<CustomOauthException> translate(Exception e) {
@@ -21,6 +22,9 @@ public class Auth2ResponseExceptionTranslator implements WebResponseExceptionTra
         if (e instanceof InvalidTokenException) {
             return ResponseEntity.ok(new CustomOauthException("token过期或无效", ((InvalidTokenException) e).getHttpErrorCode()));
         } else if (e instanceof InsufficientAuthenticationException) {
+            if(e.getMessage().startsWith(INVALID_ACCESS_TOKEN)) {
+                return ResponseEntity.ok(new CustomOauthException("token过期或无效", ResponseCode.UNAUTHORIZED));
+            }
             return ResponseEntity.ok(new CustomOauthException("没有对应的身份信息", ResponseCode.UNAUTHORIZED));
         } else if (e instanceof InvalidRequestException) {
             return ResponseEntity.ok(new CustomOauthException("没有授权类型字段", ((InvalidRequestException) e).getHttpErrorCode()));

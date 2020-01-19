@@ -30,7 +30,7 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
         if(FULL_AUTHENTICATION_REQUIRED.equals(authException.getMessage())){
             msg = "token不能为空";
         }else{
-            msg = "用户不存在";
+            msg = authException.getMessage();
         }
         Result result = new Result();
         result.setMsg(msg);
